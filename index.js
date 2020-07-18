@@ -64,7 +64,15 @@ function mutateArray(a) {
 
   // Problem 3 filter on guest
   returnArray = returnArray.filter(element => element['guest_type'] === 'guest');
-  
+
+   // Problem 4 sort by name
+   returnArray = returnArray.sort(
+    (a, b) =>  {          
+       if (a.last_name === b.last_name) {
+          return a.first_name > b.first_name ? 1 : -1;
+       }
+       return a.last_name > b.last_name ? 1 : -1;
+    });
   return returnArray;
 }
 
