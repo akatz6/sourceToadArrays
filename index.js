@@ -56,8 +56,41 @@ var arr = [
 ];
 
 function mutateArray(a) {
-  return a;
+  // Problem 1
+  const returnArray  = flattenArray(a, [])
+  return returnArray;
 }
+
+
+function flattenArray(array, returnArray){
+  const keyArray = getPairs(arr[0], [], true);
+  for(const element of array){
+    const obj ={};
+    const valueArray = getPairs(element, [], false);
+    for(let j = 0; j < valueArray.length; j++){
+      obj[keyArray[j]] = valueArray[j];
+    }
+    returnArray.push(obj);
+  }
+  return returnArray;
+}
+
+
+function getPairs(arr, array, isKey){
+  for(const key in arr){
+    if(typeof(arr[key]) === 'object' && !Array.isArray(arr[key])){
+      getPairs(arr[key], array, isKey)
+    }else{
+      if(isKey){
+        array.push(key);
+      }else{
+        array.push(arr[key]);
+      }
+    }
+  }
+  return array;
+}
+
 
 $(document).ready(function () {
   $('#originalArray').html(JSON.stringify(arr, null, 2));
