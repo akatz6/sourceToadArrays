@@ -57,13 +57,17 @@ var arr = [
 
 function mutateArray(a) {
   // Problem 1
-  const returnArray  = flattenArray(a, []);
+  let returnArray  = flattenArray(a, []);
   
   // Problem 2 sum up some_array
   sumArray(returnArray);
 
+  // Problem 3 filter on guest
+  returnArray = returnArray.filter(element => element['guest_type'] === 'guest');
+  
   return returnArray;
 }
+
 
 function sumArray(returnArray){
   for(const element of returnArray){
