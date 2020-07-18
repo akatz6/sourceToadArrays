@@ -57,10 +57,22 @@ var arr = [
 
 function mutateArray(a) {
   // Problem 1
-  const returnArray  = flattenArray(a, [])
+  const returnArray  = flattenArray(a, []);
+  
+  // Problem 2 sum up some_array
+  sumArray(returnArray);
+
   return returnArray;
 }
 
+function sumArray(returnArray){
+  for(const element of returnArray){
+    const tempArray = element["some_array"].reduce((a,b) => a + b);
+    element["some_array"] = element["some_total"];
+    element["some_total"] = tempArray;
+  }
+ }
+ 
 
 function flattenArray(array, returnArray){
   const keyArray = getPairs(arr[0], [], true);
